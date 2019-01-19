@@ -27,7 +27,6 @@ import com.codeBind.gymMgmt.services.UserMstService;
 
 @Controller
 public class LoginController {
-
 	
 	@Autowired
 	private UserMstService userMstService;
@@ -54,6 +53,7 @@ public class LoginController {
 		
 		System.out.println("userName:::::::::"+userName);
 		System.out.println("password::::::::"+password);
+		System.out.println();
 		
 		userMst = userMstService.getUserLoginDtlsByUserId(userName);
 		

@@ -28,6 +28,8 @@ import com.codeBind.gymMgmt.services.UserMstService;
 @Controller
 public class LoginController {
 	
+	public static final String  DASHBOARD = "dashboard"; 
+	
 	@Autowired
 	private UserMstService userMstService;
 	
@@ -64,6 +66,6 @@ public class LoginController {
 		}
 	
 		returnMap.put("msg",msg);
-		return new ModelAndView("dashBoard", returnMap);
+		return new ModelAndView(DASHBOARD, returnMap);
 	}
 }

@@ -12,40 +12,49 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author Akshay
- *
- */
 @Entity
-@Table(name = "member_mst")
+@Table(name = "MEMBER_MST")
 public class MemberMst implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4508276739855237982L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "member_mst_id")
-	private long memberMstId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MEMBER_MST_ID", unique = true, nullable = false, columnDefinition = "bigint")
+	private Integer memberMstId;
 	
-	@Column(name = "roll_number", nullable = false)
+	@Column(name = "ROLL_NUMBER", nullable = false)
 	private String rollNumber;
 	
-	@Column(name = "member_nm")
+	@Column(name = "MEMBER_NM")
 	private String memberNm;
-	
 
 	/**
 	 * @return the memberMstId
 	 */
-	public long getMemberMstId() {
+	public Integer getMemberMstId() {
 		return memberMstId;
 	}
 
 	/**
-	 * @return the roll_number
+	 * @param memberMstId the memberMstId to set
+	 */
+	public void setMemberMstId(Integer memberMstId) {
+		this.memberMstId = memberMstId;
+	}
+
+	/**
+	 * @return the rollNumber
 	 */
 	public String getRollNumber() {
 		return rollNumber;
+	}
+
+	/**
+	 * @param rollNumber the rollNumber to set
+	 */
+	public void setRollNumber(String rollNumber) {
+		this.rollNumber = rollNumber;
 	}
 
 	/**
@@ -55,29 +64,10 @@ public class MemberMst implements Serializable {
 		return memberNm;
 	}
 
-	
-
-	/**
-	 * @param memberMstId the memberMstId to set
-	 */
-	public void setMemberMstId(long memberMstId) {
-		this.memberMstId = memberMstId;
-	}
-
-	/**
-	 * @param roll_number the roll_number to set
-	 */
-	public void setRollNumber(String rollNumber) {
-		this.rollNumber = rollNumber;
-	}
-
 	/**
 	 * @param memberNm the memberNm to set
 	 */
 	public void setMemberNm(String memberNm) {
 		this.memberNm = memberNm;
 	}
-
-	
-	
 }

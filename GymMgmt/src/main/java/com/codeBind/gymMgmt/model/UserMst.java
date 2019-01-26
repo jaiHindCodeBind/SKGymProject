@@ -7,28 +7,30 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @author Akshay
- *
- */
-
 @Entity
-@Table(name = "user_mst")
+@Table(name = "USER_MST")
 public class UserMst implements Serializable {
+	
+	
+	private static final long serialVersionUID = -7349716361572627965L;
 
-	
-	private static final long serialVersionUID = 1L;
-	
 	@Id
-	@Column(name = "user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "USER_MST_ID", unique = true, nullable = false, columnDefinition = "bigint")
 	private String userId;
 
-	@Column(name = "user_pwd")
+	@Column(name = "LOGIN_ID")
+	private String loginId;
+	
+	@Column(name = "USER_PWD")
 	private String password;
 
+	
 	/**
 	 * @return the userId
 	 */
@@ -44,6 +46,20 @@ public class UserMst implements Serializable {
 	}
 
 	/**
+	 * @return the loginId
+	 */
+	public String getLoginId() {
+		return loginId;
+	}
+
+	/**
+	 * @param loginId the loginId to set
+	 */
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+
+	/**
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -56,6 +72,7 @@ public class UserMst implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	
 	
 }

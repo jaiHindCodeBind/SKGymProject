@@ -40,7 +40,7 @@ public class LoginController {
  
 		return new ModelAndView("login", returnMap);
 	}
-	
+	//Test
 	@RequestMapping(value = "/authenticateLogin.do")
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginForm") LoginForm form) throws Exception {
 		System.out.println("in the authenticate method:::::::");

@@ -20,7 +20,7 @@ public interface UserMstDao extends CrudRepository<UserMst, String>{
 	 * @param userNm
 	 * @return
 	 * @throws Exception
-	 */
-	public UserMst getMemberByUserId(String userNm) throws Exception;
+	 *//*
+	public UserMst getMemberByUserId(String userNm) throws Exception;*/
 	
 }

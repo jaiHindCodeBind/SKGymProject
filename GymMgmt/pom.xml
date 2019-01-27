@@ -34,15 +34,26 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
-		<!-- <dependency>
+	<!-- <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency> -->
-		<dependency>
+		
+		 <dependency>
     		<groupId>com.microsoft.sqlserver</groupId>
     		<artifactId>mssql-jdbc</artifactId>
-    		</dependency>
+   		</dependency> 
+		
+		 <!-- <dependency>
+	            <groupId>org.hibernate</groupId>
+	            <artifactId>hibernate-entitymanager</artifactId>
+	        </dependency> -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-orm</artifactId>
+		</dependency>
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -75,4 +86,13 @@
 	</build>
 
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.microsoft.sqlserver</groupId>
+				<artifactId>sqljdbc41</artifactId>
+				<version>4.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

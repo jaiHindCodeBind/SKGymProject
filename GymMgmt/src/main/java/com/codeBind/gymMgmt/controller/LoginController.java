@@ -28,7 +28,7 @@ import com.codeBind.gymMgmt.services.UserMstService;
 @Controller
 public class LoginController {
 	
-	public static final String  DASHBOARD = "dashboard"; 
+	public static final String  DASHBOARD = "dashBoard"; 
 	
 	@Autowired
 	private UserMstService userMstService;
@@ -43,7 +43,7 @@ public class LoginController {
 	//Test
 	@RequestMapping(value = "/authenticateLogin.do")
 	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginForm") LoginForm form) throws Exception {
-		System.out.println("in the authenticate method:::::::");
+		System.out.println("in the authoenticate method:::::::");
 
 	
 		Map<String, Object> returnMap = new HashMap<String, Object>();

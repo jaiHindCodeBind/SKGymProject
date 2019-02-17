@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.codeBind.gymMgmt.GymException;
 import com.codeBind.gymMgmt.model.MemberMst;
 import com.codeBind.gymMgmt.services.MemberMstService;
+import com.codeBind.gymMgmt.util.Constants;
+import com.codeBind.gymMgmt.util.GYMBaseController;
 
 /**
  * @author Akshay
@@ -27,7 +30,7 @@ import com.codeBind.gymMgmt.services.MemberMstService;
  */
 
 @RestController
-public class MemberController {
+public class MemberController extends GYMBaseController{
 	
 	private static final Logger logger = LogManager.getLogger(MemberController.class);
 
@@ -35,8 +38,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberMstService memberMstService;
-	
-	
 	
 	@GetMapping(value = "/test")
 	public String getHi() {
@@ -51,6 +52,18 @@ public class MemberController {
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		String msg = "We are on new Page";
 		
+		
+		System.out.println("loginId " +getUserSession().getLoginId());
+		System.out.println("gymCode " +getUserSession().getGymCode());
+		System.out.println("gym Nm " +getUserSession().getGymNm());
+		System.out.println("userNM " +getUserSession().getUserNM());
+		System.out.println("userTP " +getUserSession().getUserTp());
+		
+		
+		if (!validateUser(Constants.Modules.ADD_MEMBER, Constants.Actions.CREATE_ACTION)) {
+			logger.info("Exiting loadEgmRequest in validator()....");
+			return new ModelAndView(UNAUTHORIZED_VIEW);
+		}
 		
 		returnMap.put("msg", msg);
 		logger.info("Exiting loadAddMember()...");

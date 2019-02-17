@@ -18,6 +18,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+
 <style>
 body
 {
@@ -203,6 +204,16 @@ form.login a:hover
 
 
 </style>
+
+<script type="text/javascript">
+
+var loginCheckMsg = "${param.loginCheckMsg}";
+if(loginCheckMsg != ""){
+	alert(loginCheckMsg);
+}
+
+</script>
+
 </head>
  
 <body>
@@ -213,7 +224,9 @@ form.login a:hover
             <form:form method="POST" action="authenticateLogin.do" modelAttribute="loginForm">
             <div class="wrap">
                 <p class="form-title">Sign In</p>
-                
+                <font color="red">
+					<form:errors path="error"/>
+				</font>
                 <form:input type="text" path= "userName" placeholder="Username" />
                 <form:input type="password" path= "password" placeholder="Password" />
                 <input type="submit" value="Sign In" onClick=authenticate class="btn btn-success btn-sm" />

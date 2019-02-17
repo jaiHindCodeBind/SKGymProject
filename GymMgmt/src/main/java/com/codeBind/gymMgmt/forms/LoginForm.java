@@ -15,6 +15,7 @@ public class LoginForm implements Serializable{
 
 	String userName ;
 	String password ;
+	String error;
 	/**
 	 * @return the userName
 	 */
@@ -39,6 +40,17 @@ public class LoginForm implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+	/**
+	 * @return the error
+	 */
+	public String getError() {
+		return error;
+	}
+	/**
+	 * @param error the error to set
+	 */
+	public void setError(String error) {
+		this.error = error;
+	}
+
 }

@@ -4,14 +4,23 @@
 package com.codeBind.gymMgmt.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +36,7 @@ public class UserMst implements Serializable {
 	private Integer userMstId;
 
 	@Id
-	@Column(name = "LOGIN_ID", unique = true, nullable = false)
+	@Column(name = "LOGIN_ID", unique = true, nullable = false )
 	private String loginId;
 	
 	@Column(name = "USER_PWD")
@@ -40,24 +49,24 @@ public class UserMst implements Serializable {
 	private String oldPwd;
 	
 	@Column(name = "PWD_CHANGE_DT")
-	private String pwdChangeDt;
+	private Date pwdChangeDt;
 	
 	@Column(name = "STATUS")
 	private String status;
 	
 	@ManyToOne(targetEntity = GYMMaster.class)
 	@JoinColumn(name = "GYM_CODE")
-	//@JoinColumn(name = "GYM_CODE")
 	private GYMMaster gymMaster;
 	
-	/*
-	@OneToMany(targetEntity = UserGrpAccess.class, mappedBy = "userMst", fetch = FetchType.EAGER)
-	//@JoinColumn(name = "LOGIN_ID", referencedColumnName = "LOGIN_ID")
-	@Cascade(value = { CascadeType.ALL, CascadeType.DELETE_ORPHAN })
-	@Fetch(FetchMode.SELECT)
-	private List<UserGrpAccess> userAccessModules;
-*/
-	
+	@Column(name = "USER_TP")
+	private String userTP;
+
+	 @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	 @JoinTable(name = "USR_GRP_ACCESS", joinColumns = { @JoinColumn(name = "LOGIN_ID") },inverseJoinColumns = { @JoinColumn(name = "GRP_CODE") })
+	 private Set<MstGroup> mstGroup;
+	 
+	 @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 private Set<UserGrpAccess> userGrpAccess;
 	
 	/**
 	 * @return the userMstId
@@ -129,17 +138,11 @@ public class UserMst implements Serializable {
 		this.oldPwd = oldPwd;
 	}
 
-	/**
-	 * @return the pwdChangeDt
-	 */
-	public String getPwdChangeDt() {
+	public Date getPwdChangeDt() {
 		return pwdChangeDt;
 	}
 
-	/**
-	 * @param pwdChangeDt the pwdChangeDt to set
-	 */
-	public void setPwdChangeDt(String pwdChangeDt) {
+	public void setPwdChangeDt(Date pwdChangeDt) {
 		this.pwdChangeDt = pwdChangeDt;
 	}
 
@@ -156,6 +159,20 @@ public class UserMst implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	/**
+	 * @return the userTP
+	 */
+	public String getUserTP() {
+		return userTP;
+	}
+
+	/**
+	 * @param userTP the userTP to set
+	 */
+	public void setUserTP(String userTP) {
+		this.userTP = userTP;
+	}
 
 	/**
 	 * @return the gymMaster
@@ -169,6 +186,28 @@ public class UserMst implements Serializable {
 	 */
 	public void setGymMaster(GYMMaster gymMaster) {
 		this.gymMaster = gymMaster;
+	}
+
+	public Set<MstGroup> getMstGroup() {
+		return mstGroup;
+	}
+
+	public void setMstGroup(Set<MstGroup> mstGroup) {
+		this.mstGroup = mstGroup;
+	}
+
+	/**
+	 * @return the userGrpAccess
+	 */
+	public Set<UserGrpAccess> getUserGrpAccess() {
+		return userGrpAccess;
+	}
+
+	/**
+	 * @param userGrpAccess the userGrpAccess to set
+	 */
+	public void setUserGrpAccess(Set<UserGrpAccess> userGrpAccess) {
+		this.userGrpAccess = userGrpAccess;
 	}
 	
 }

@@ -71,8 +71,7 @@ public class LoginController extends GYMBaseController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/authenticateLogin.do")
-	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginForm") LoginForm form,
-			BindingResult result) throws Exception {
+	public ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("loginForm") LoginForm form, BindingResult result) throws Exception,GymException {
 		logger.info("Entering onSubmit()...");
 
 		Map<String, Object> returnMap = new HashMap<String, Object>();
@@ -96,9 +95,7 @@ public class LoginController extends GYMBaseController {
 			}
 			logger.info("Exiting onSubmit()...");
 		} catch (GymException e) {
-			System.out.println(Constants.LOGIN_CHK_MSG + e.getMessage());
-			returnMap.put(Constants.LOGIN_CHK_MSG, e.getMessage());
-			result.rejectValue(Constants.STRING_ERROR, e.getMessage());
+			result.rejectValue(Constants.STRING_ERROR ,"An error occured while processing your request. Please Contact Administrator ",e.getMessage());
 			return new ModelAndView(LOGIN, returnMap);
 		} catch (Exception e) {
 			// result.rejectValue(Constants.STRING_ERROR, "An error occured while processing
